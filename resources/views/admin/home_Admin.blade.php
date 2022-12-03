@@ -22,9 +22,11 @@
 @endsection
 
 @section('contenidoPrincipal')
-    <a href="{{ route('bicicleta.create') }}" class="ml-5 pl-5"><button type="button"
-            class="btn btn-info ml-5 mt-5 boton_redondo"><b>+</b> Agregar
-            Bicicleta</button></a>
+    <div class="container">
+        <a href="{{ route('bicicleta.create') }}" class=""><button type="button"
+                class="btn btn-info ml-3 mt-5 boton_redondo"><b>+</b> Agregar
+                Bicicleta</button></a>
+    </div>
     <div class="container row mt-5 mb-5 mx-auto">
         <?php $modal = 0; ?>
         @forelse ($Bicicletas as $item)

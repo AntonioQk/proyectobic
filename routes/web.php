@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //login
-Route::view('/login', 'login')->name('login');
+Route::view('/', 'login')->name('login');
 //registro
 Route::view('/registro', 'registro')->name('registro');
 //RUTAS PARA BICICLETAS ADMIN
@@ -44,7 +44,7 @@ Route::put('/equipoUpdate/{id}', [EquipoController::class, 'update'])->name('equ
 
 //RUTAS PARA BICICLETAS CLIENTE
 //ver bicicletas
-Route::get('/', [BicicletaController::class, 'index2'])->name('listaCliente.index');
+Route::get('/HomeCliente', [BicicletaController::class, 'index2'])->name('listaCliente.index');
 
 
 //RUTAS PARA EQUIPOS CLIENTE

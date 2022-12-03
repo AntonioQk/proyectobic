@@ -16,7 +16,7 @@ class BicicletaController extends Controller
     public function index(Request $request)
     {
         //$Bicicletas = bicicleta::get();
-        $Bicicletas = bicicleta::where('estado_bici', 'like', 1)->paginate();
+        $Bicicletas = bicicleta::whereIn('estado_bici', [1, 2])->paginate();
         return view('admin/home_Admin', compact('Bicicletas'));
     }
 
