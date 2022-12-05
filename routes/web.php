@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BicicletaController;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//login
+//LOGIN
 Route::view('/', 'login')->name('login');
-//registro
+//REGISTRO
 Route::view('/registro', 'registro')->name('registro');
-//RUTAS PARA BICICLETAS ADMIN
+//crear cuenta cliente
+Route::POST('/crearCuenta', [UsuarioController::class, 'store'])->name('usuario.store');
+//registro admin
+Route::get('/agregarAdmin', [UsuarioController::class, 'create'])->name('usuario.create');
+//Crear cuenta admini
+Route::POST('/crearAdmin', [UsuarioController::class, 'store'])->name('usuario.store');
 
+
+
+//RUTAS PARA BICICLETAS ADMIN
 
 //ver bicicletas
 Route::get('/HomeAdmin', [BicicletaController::class, 'index'])->name('lista.index');
@@ -50,3 +59,18 @@ Route::get('/HomeCliente', [BicicletaController::class, 'index2'])->name('listaC
 //RUTAS PARA EQUIPOS CLIENTE
 //ver equipos
 Route::get('/verEquipo_cliente', [EquipoController::class, 'index2'])->name('listaCliente.equipo');
+
+
+//RUTAS PARA LOS FILTROS ADMIN_BICIS
+//filtro disponibles
+Route::get('/HomeAdmin/disponibles', [BicicletaController::class, 'index_dispo'])->name('lista.index_dispo');
+//filtro ocupados
+Route::get('/HomeAdmin/ocupados', [BicicletaController::class, 'index_ocu'])->name('lista.index_ocu');
+//filtro fuera de servicio
+Route::get('/HomeAdmin/fuera', [BicicletaController::class, 'index_fuera'])->name('lista.index_fuera');
+
+//RUTAS PARA LOS FILTROS ADMIN_EQUIPOS
+//filtro disponibles
+Route::get('/verEquipo_admin/disponibles', [EquipoController::class, 'index_dispo'])->name('lista.equipo_dispo');
+//filtro fuera de servicio
+Route::get('/verEquipo_admin/fuera', [EquipoController::class, 'index_fuera'])->name('lista.equipo_fuera');

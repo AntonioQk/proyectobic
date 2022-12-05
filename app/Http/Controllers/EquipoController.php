@@ -18,6 +18,18 @@ class EquipoController extends Controller
         $Equipos = equipo::whereIn('estado',  [1, 3])->paginate();
         return view('admin/ver_equipo', compact('Equipos'));
     }
+    public function index_dispo(Request $request)
+    {
+        //traer todos los elementos de la tabla equipos al index
+        $Equipos = equipo::whereIn('estado',  [1])->paginate();
+        return view('admin/ver_equipo', compact('Equipos'));
+    }
+    public function index_fuera(Request $request)
+    {
+        //traer todos los elementos de la tabla equipos al index
+        $Equipos = equipo::whereIn('estado',  [3])->paginate();
+        return view('admin/ver_equipo', compact('Equipos'));
+    }
 
     public function index2(Request $request)
     {

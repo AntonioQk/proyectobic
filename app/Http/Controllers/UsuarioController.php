@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\usuario;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -23,7 +24,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/agregar_user');
     }
 
     /**
@@ -34,7 +35,19 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $NewUsuario = new usuario();
+        $NewUsuario->rol = $request->input('rol');
+        $NewUsuario->nombres = $request->input('nombre');
+        $NewUsuario->apellidos = $request->input('apellido');
+        $NewUsuario->correo = $request->input('correo');
+        $NewUsuario->contrasenia = $request->input('contra');
+        $NewUsuario->save();
+        if ($request->input('rol') == 1) {
+            return redirect()->route('usuario.create');
+            //return view('agregar_user')->whit('message', 'store');
+        } else if ($request->input('rol') == 2) {
+            return redirect()->route('login');
+        }
     }
 
     /**

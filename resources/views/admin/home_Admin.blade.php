@@ -16,7 +16,7 @@
             <a class="nav-link" href="{{ route('equipo.create') }}">Agregar equipo</a>
         </li> --}}
         <li class="nav-item">
-            <a class="nav-link">Agregar administrador</a>
+            <a class="nav-link" href="{{ route('usuario.create') }}">Agregar administrador</a>
         </li>
     </ul>
 @endsection
@@ -27,7 +27,15 @@
                 class="btn btn-info ml-3 mt-5 boton_redondo"><b>+</b> Agregar
                 Bicicleta</button></a>
     </div>
-    <div class="container row mt-5 mb-5 mx-auto">
+    <div class="container pl-5 mt-3">
+        <label class="mr-2">Filtar por:</label>
+        <a href="{{ route('lista.index_dispo') }}"><button class="btn btn-success" type="button">Disponibles</button></a>
+        <a href="{{ route('lista.index_ocu') }}"><button class="btn btn-info" type="button">Ocupados</button></a>
+        <a href="{{ route('lista.index_fuera') }}"><button class="btn btn-danger" type="button">Fuera de
+                servicio</button></a>
+        <a href="{{ route('lista.index') }}"><button class="btn btn-secondary" type="button">Sin filtro</button></a>
+    </div>
+    <div class="container row mt-3 mb-5 mx-auto">
         <?php $modal = 0; ?>
         @forelse ($Bicicletas as $item)
             <?php

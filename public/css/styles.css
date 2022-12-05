@@ -121,4 +121,8 @@ label{
     border-radius: 10px;
 }
 
+.input_escondido{
+    display: none;
+}
+
 

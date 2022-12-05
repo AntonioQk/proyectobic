@@ -19,6 +19,24 @@ class BicicletaController extends Controller
         $Bicicletas = bicicleta::whereIn('estado_bici', [1, 2, 3])->paginate();
         return view('admin/home_Admin', compact('Bicicletas'));
     }
+    public function index_dispo(Request $request)
+    {
+        //$Bicicletas = bicicleta::get();
+        $Bicicletas = bicicleta::whereIn('estado_bici', [1])->paginate();
+        return view('admin/home_Admin', compact('Bicicletas'));
+    }
+    public function index_ocu(Request $request)
+    {
+        //$Bicicletas = bicicleta::get();
+        $Bicicletas = bicicleta::whereIn('estado_bici', [2])->paginate();
+        return view('admin/home_Admin', compact('Bicicletas'));
+    }
+    public function index_fuera(Request $request)
+    {
+        //$Bicicletas = bicicleta::get();
+        $Bicicletas = bicicleta::whereIn('estado_bici', [3])->paginate();
+        return view('admin/home_Admin', compact('Bicicletas'));
+    }
 
     public function index2(Request $request)
     {
