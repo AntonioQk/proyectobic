@@ -16,7 +16,7 @@ class BicicletaController extends Controller
     public function index(Request $request)
     {
         //$Bicicletas = bicicleta::get();
-        $Bicicletas = bicicleta::whereIn('estado_bici', [1, 2])->paginate();
+        $Bicicletas = bicicleta::whereIn('estado_bici', [1, 2, 3])->paginate();
         return view('admin/home_Admin', compact('Bicicletas'));
     }
 
@@ -98,7 +98,18 @@ class BicicletaController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $bicicletas = bicicleta::findOrFail($id);
+
+        if ($request->hasFile('img_bici_update')) {
+            $file = $request->file('img_bici_update');
+            $destinationPath = 'img/bicicletas/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $file->move($destinationPath, $filename);
+            $bicicletas->img_bici = $destinationPath . $filename;
+        }
+
+
         $bicicletas->estado_bici = $request->input('estado_update');
         $bicicletas->marca = $request->input('marca_update');
         $bicicletas->tipo = $request->input('tipo_update');

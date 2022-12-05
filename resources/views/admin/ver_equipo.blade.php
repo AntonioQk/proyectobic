@@ -31,12 +31,19 @@
             <?php
             $estado_bici = $item->estado;
             $estado = '';
+            $estado2 = '';
+            $valor1 = 0;
+            $valor2 = 0;
             if ($estado_bici == 1) {
                 $estado = 'Disponible';
-            } elseif ($estado_bici == 2) {
-                $estado = 'Ocupado';
+                $estado2 = 'Fuera de servicio';
+                $valor1 = 1;
+                $valor2 = 3;
             } elseif ($estado_bici == 3) {
                 $estado = 'Fuera de servicio';
+                $estado2 = 'Disponible';
+                $valor1 = 3;
+                $valor2 = 1;
             }
 
             ?>
@@ -68,8 +75,10 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
+                                            <img src={{ asset($item->img_equipo) }} class="img_bici_actualizar"
+                                                alt="...">
                                             <form method="post" action="{{ route('equipo.update', $item->id) }}"
-                                                class="container mt-5 pt-5 mb-5 pb-5">
+                                                class="container mt-5 mb-5 pb-5" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
                                                 <div class="form-row">
@@ -87,9 +96,22 @@
                                                     <textarea class="form-control" id="validationTextarea2" placeholder="Descripcion del equipo" name="desc_update" required
                                                         minlength="5" onkeyup="this.value=NumText(this.value)">{{ $item->descripcion }}</textarea>
                                                 </div>
-                                                <div class="container_botones_cards">
-                                                    <a href="#"><img src="{{ asset('/img/Basura.png') }}"
-                                                            class="img_basura"></a>
+                                                <div>
+                                                    <label for="estado">Estado del equipo</label>
+                                                    <select name="estado_update" id="estado" class="form-control col-6"
+                                                        required>
+                                                        <option value=<?php echo $valor1; ?> selected><?php echo $estado; ?>
+                                                        </option>
+                                                        <option value=<?php echo $valor2; ?>><?php echo $estado2; ?></option>
+                                                    </select>
+                                                </div>
+                                                <label for="cantidad" class="mt-2">Cantidad</label>
+                                                <input class="form-control col-2" type="number" id="cantidad"
+                                                    name="cantidad_equipo_update" value="{{ $item->cantidad }}">
+                                                <div class="mt-3">
+                                                    <label for="seleccionArchivos2">Seleccionar nueva imagen</label>
+                                                    <input type="file" name="img_equipo_update" class="input_img mb-3">
+
                                                 </div>
                                                 <input type="submit" class="btn btn-success" value="Guardar">
                                             </form>
@@ -115,7 +137,7 @@
         function NumText(string) { //solo letras y numeros
             var out = '';
             //Se añaden las letras validas
-            var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890 '; //Caracteres validos
+            var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890, '; //Caracteres validos
 
             for (var i = 0; i < string.length; i++)
                 if (filtro.indexOf(string.charAt(i)) != -1)

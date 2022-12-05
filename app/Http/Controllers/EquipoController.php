@@ -15,7 +15,7 @@ class EquipoController extends Controller
     public function index(Request $request)
     {
         //traer todos los elementos de la tabla equipos al index
-        $Equipos = equipo::where('estado', 'like', 1)->paginate();
+        $Equipos = equipo::whereIn('estado',  [1, 3])->paginate();
         return view('admin/ver_equipo', compact('Equipos'));
     }
 
@@ -56,6 +56,7 @@ class EquipoController extends Controller
         }
 
 
+        $NewEquipo->cantidad = $request->input('cantidad_equipo');
         $NewEquipo->nombre = $request->input('nombre');
         $NewEquipo->descripcion = $request->input('descripcion');
         $NewEquipo->save();
@@ -94,6 +95,17 @@ class EquipoController extends Controller
     public function update(Request $request, $id)
     {
         $equipos = equipo::findOrFail($id);
+
+        if ($request->hasFile('img_equipo_update')) {
+            $file = $request->file('img_equipo_update');
+            $destinationPath = 'img/equipo/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $file->move($destinationPath, $filename);
+            $equipos->img_equipo = $destinationPath . $filename;
+        }
+
+        $equipos->estado = $request->input('estado_update');
+        $equipos->cantidad = $request->input('cantidad_equipo_update');
         $equipos->nombre = $request->input('nombre_update');
         $equipos->descripcion = $request->input('desc_update');
         $equipos->save();

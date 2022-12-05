@@ -34,12 +34,19 @@
             $estado_bici = $item->estado_bici;
             $estado = '';
             $estado2 = '';
+            $valor1 = 0;
+            $valor2 = 0;
+
             if ($estado_bici == 1) {
                 $estado = 'Disponible';
                 $estado2 = 'Ocupado';
+                $valor1 = 1;
+                $valor2 = 2;
             } elseif ($estado_bici == 2) {
                 $estado = 'Ocupado';
                 $estado2 = 'Disponible';
+                $valor1 = 2;
+                $valor2 = 1;
             } elseif ($estado_bici == 3) {
                 $estado = 'Fuera de servicio';
             }
@@ -72,9 +79,11 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
+                                            <img src={{ asset($item->img_bici) }} class="img_bici_actualizar"
+                                                alt="...">
 
                                             <form method="post" action="{{ route('bicicleta.update', $item->id) }}"
-                                                class="container mt-5 mb-5 pb-5">
+                                                class="container mt-5 mb-5 pb-5" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
                                                 <div class="form-row">
@@ -104,13 +113,19 @@
                                                     <textarea class="form-control" id="descripcion" placeholder="Descripcion de la bicicleta" name="descripcion_update"
                                                         required onkeyup="this.value=NumText(this.value)">{{ $item->descripcion }}</textarea>
                                                 </div>
-                                                <div class="col-6">
+                                                <div>
                                                     <label for="estado">Estado de la bicicleta</label>
-                                                    <select name="estado_update" id="estado" class="form-control"
+                                                    <select name="estado_update" id="estado" class="form-control col-6"
                                                         required>
-                                                        <option value="1" selected><?php echo $estado; ?></option>
-                                                        <option value="2"><?php echo $estado2; ?></option>
+                                                        <option value=<?php echo $valor1; ?> selected><?php echo $estado; ?>
+                                                        </option>
+                                                        <option value=<?php echo $valor2; ?>><?php echo $estado2; ?></option>
                                                     </select>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label for="seleccionArchivos2">Seleccionar nueva imagen</label>
+                                                    <input type="file" name="img_bici_update" class="input_img mb-3">
+
                                                 </div>
                                                 <div class="container_botones_cards">
                                                     <a href="#"><img src="{{ asset('/img/Basura.png') }}"
@@ -138,7 +153,7 @@
 
 
         @empty
-            <li>No hay proyectos para mostrar</li>
+            <li>No hay bicicletas para mostrar</li>
         @endforelse
     </div>
 
@@ -146,7 +161,7 @@
         function NumText(string) { //solo letras y numeros
             var out = '';
             //Se añaden las letras validas
-            var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890 '; //Caracteres validos
+            var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890, '; //Caracteres validos
 
             for (var i = 0; i < string.length; i++)
                 if (filtro.indexOf(string.charAt(i)) != -1)

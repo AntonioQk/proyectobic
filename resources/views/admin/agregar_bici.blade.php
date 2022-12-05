@@ -61,7 +61,12 @@
                         aria-describedby="inputGroupFileAddon01" required name="img_bici">
                     <label class="custom-file-label input_img" for="inputGroupFile01">Subir imagen</label>
                 </div> --}}
-            <input type="file" name="img_bici" class="input_img" id="img_bici">
+            {{-- <input type="file" name="img_bici" class="input_img" id="img_bici"> --}}
+
+            <input type="file" name="img_bici" id="seleccionArchivos" accept="image/*" class="input_img" required>
+            <br><br>
+            <!-- La imagen que vamos a usar para previsualizar lo que el usuario selecciona -->
+            <img id="imagenPrevisualizacion" class="img_bici_tamaño">
         </div>
         <button type="submit" class="btn btn-success">Guardar bicicleta</button>
     </form>
@@ -70,12 +75,34 @@
         function NumText(string) { //solo letras y numeros
             var out = '';
             //Se añaden las letras validas
-            var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890 '; //Caracteres validos
+            var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890, '; //Caracteres validos
 
             for (var i = 0; i < string.length; i++)
                 if (filtro.indexOf(string.charAt(i)) != -1)
                     out += string.charAt(i);
             return out;
         }
+
+        // Obtener referencia al input y a la imagen
+
+        const $seleccionArchivos = document.querySelector("#seleccionArchivos"),
+            $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+
+        // Escuchar cuando cambie
+        $seleccionArchivos.addEventListener("change", () => {
+            // Los archivos seleccionados, pueden ser muchos o uno
+            const archivos = $seleccionArchivos.files;
+            // Si no hay archivos salimos de la función y quitamos la imagen
+            if (!archivos || !archivos.length) {
+                $imagenPrevisualizacion.src = "";
+                return;
+            }
+            // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+            const primerArchivo = archivos[0];
+            // Lo convertimos a un objeto de tipo objectURL
+            const objectURL = URL.createObjectURL(primerArchivo);
+            // Y a la fuente de la imagen le ponemos el objectURL
+            $imagenPrevisualizacion.src = objectURL;
+        });
     </script>
 @endsection

@@ -54,9 +54,26 @@ body{
 
 }
 
-.input_img{
-    background-color: #8395a78f;
+.img_bici_tamaño{
     width: 300px;
+}
+
+.input_img{
+    /* background-color: #8395a78f; */
+    width: 300px;
+}
+
+.img_bici_modal{
+    width: 300px;
+}
+
+.img_bici_actualizar{
+    width: 200px;
+    margin: 0 0 0 130px;
+}
+
+label{
+    font-weight: 500;
 }
 /* login */
 
