@@ -23,8 +23,8 @@
 
 @section('contenidoPrincipal')
     <div class="container">
-        <a href="{{ route('equipo.create') }}" class="ml-5 pl-5"><button type="button"
-                class="btn btn-info ml-5 mt-5 boton_redondo"><b>+</b> Agregar
+        <a href="{{ route('equipo.create') }}"><button type="button" class="btn btn-info ml-3 mt-5 boton_redondo"><b>+</b>
+                Agregar
                 Equipo</button></a>
     </div>
     <div class="container pl-5 mt-3">
