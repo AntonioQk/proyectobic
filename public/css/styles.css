@@ -125,4 +125,13 @@ label{
     display: none;
 }
 
+.links_navbar_{
+    position: absolute;
+    right: 35px;
+}
+
+.btn_cerrarSesion{
+    color: #8395a7;
+}
+
 

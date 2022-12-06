@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\usuario;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -35,12 +38,12 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $NewUsuario = new usuario();
+        $NewUsuario = new User();
         $NewUsuario->rol = $request->input('rol');
-        $NewUsuario->nombres = $request->input('nombre');
-        $NewUsuario->apellidos = $request->input('apellido');
-        $NewUsuario->correo = $request->input('correo');
-        $NewUsuario->contrasenia = $request->input('contra');
+        $NewUsuario->name = $request->input('nombre');
+        $NewUsuario->lastname = $request->input('apellido');
+        $NewUsuario->email = $request->input('correo');
+        $NewUsuario->password = $request->input('contra');
         $NewUsuario->save();
         if ($request->input('rol') == 1) {
             return redirect()->route('usuario.create');
@@ -49,7 +52,26 @@ class UsuarioController extends Controller
             return redirect()->route('login');
         }
     }
+    public function login(Request $request)
+    {
+        $credentials =  request()->only("email", "password");
 
+        if (Auth::attempt($credentials)) {
+            request()->session()->regenerate();
+            //return redirect()->route('listaCliente.index');
+            return redirect()->route('lista.index');
+        }
+
+        return redirect()->route('login');
+    }
+
+    public function logout()
+    {
+        Session::flush();
+
+        Auth::logout();
+        return redirect()->route('login');
+    }
     /**
      * Display the specified resource.
      *

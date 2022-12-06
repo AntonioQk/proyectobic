@@ -13,31 +13,35 @@ class BicicletaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //FUNCION PRINCIPAL(MUESTRA TODAS LAS BICICLETAS)
     public function index(Request $request)
     {
         //$Bicicletas = bicicleta::get();
         $Bicicletas = bicicleta::whereIn('estado_bici', [1, 2, 3])->paginate();
         return view('admin/home_Admin', compact('Bicicletas'));
     }
+    //FUNCION DEL PRIMER FILTRO(MUESTRA SOLO LAS BICICLETAS DISPONIBLE)
     public function index_dispo(Request $request)
     {
         //$Bicicletas = bicicleta::get();
         $Bicicletas = bicicleta::whereIn('estado_bici', [1])->paginate();
         return view('admin/home_Admin', compact('Bicicletas'));
     }
+    //FUNCION DEL SEGUNDO FILTRO(MUESTRA SOLO LAS BICICLETAS OCUPADAS)
     public function index_ocu(Request $request)
     {
         //$Bicicletas = bicicleta::get();
         $Bicicletas = bicicleta::whereIn('estado_bici', [2])->paginate();
         return view('admin/home_Admin', compact('Bicicletas'));
     }
+    //FUNCION DEL TERCER FILTRO(MUESTRA SOLO LAS BICICLETAS QUE ESTAN FUERA DE SERVICIO)
     public function index_fuera(Request $request)
     {
         //$Bicicletas = bicicleta::get();
         $Bicicletas = bicicleta::whereIn('estado_bici', [3])->paginate();
         return view('admin/home_Admin', compact('Bicicletas'));
     }
-
+    //INDEX 2 (MUESTRA TODAS LAS BICICLETAS AL CLIENTE)
     public function index2(Request $request)
     {
         //$Bicicletas = bicicleta::get();
@@ -50,6 +54,7 @@ class BicicletaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //RETORNA LA VISTA DEL FORMULARIO EN DONDE SE CREA UNA NUEVA BICICLETA
     public function create()
     {
         return view('admin/agregar_bici');
@@ -61,11 +66,13 @@ class BicicletaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //FUNCION QUE GUARDA LOS DATOS DEL FORMULARIO DE NUEVA BICICLETA EN LA BASE DE DATOS
     public function store(Request $request)
     {
 
         $NewBici = new bicicleta;
 
+        //SE CAPTURAN LOS DATOS DE LA IMAGEN Y SE GUARDA
         //dd($request->hasFile('img_bici'));
         if ($request->hasFile('img_bici')) {
             $file = $request->file('img_bici');
@@ -114,6 +121,7 @@ class BicicletaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //FUNCION QUE ME CAPTURA Y ACTUALIZA DATOS DE LAS BICICLETAS
     public function update(Request $request, $id)
     {
 
@@ -132,6 +140,14 @@ class BicicletaController extends Controller
         $bicicletas->marca = $request->input('marca_update');
         $bicicletas->tipo = $request->input('tipo_update');
         $bicicletas->descripcion = $request->input('descripcion_update');
+        $bicicletas->save();
+        return redirect()->route('lista.index');
+    }
+    public function eliminar(Request $request, $id)
+    {
+        $bicicletas = bicicleta::findOrFail($id);
+
+        $bicicletas->estado_bici = '3';
         $bicicletas->save();
         return redirect()->route('lista.index');
     }

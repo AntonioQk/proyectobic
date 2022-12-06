@@ -2,7 +2,7 @@
 
 
 @section('Links')
-    <ul class="navbar-nav mx-auto">
+    <ul class="navbar-nav links_navbar_">
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('listaCliente.index') }}">Home <span class="sr-only">(current)</span></a>
         </li>

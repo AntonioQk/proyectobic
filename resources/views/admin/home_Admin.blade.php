@@ -2,7 +2,7 @@
 
 
 @section('Links')
-    <ul class="navbar-nav mx-auto">
+    <ul class="navbar-nav links_navbar_">
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('lista.index') }}">Inicio <span class="sr-only">(current)</span></a>
         </li>
@@ -42,21 +42,32 @@
             $estado_bici = $item->estado_bici;
             $estado = '';
             $estado2 = '';
+            $estado3 = '';
             $valor1 = 0;
             $valor2 = 0;
+            $valor3 = 0;
 
             if ($estado_bici == 1) {
                 $estado = 'Disponible';
                 $estado2 = 'Ocupado';
+                $estado3 = 'Fuera de servicio';
                 $valor1 = 1;
                 $valor2 = 2;
+                $valor3 = 3;
             } elseif ($estado_bici == 2) {
                 $estado = 'Ocupado';
                 $estado2 = 'Disponible';
+                $estado3 = 'Fuera de servicio';
                 $valor1 = 2;
                 $valor2 = 1;
+                $valor3 = 3;
             } elseif ($estado_bici == 3) {
                 $estado = 'Fuera de servicio';
+                $estado2 = 'Disponible';
+                $estado3 = 'Ocupado';
+                $valor1 = 3;
+                $valor2 = 1;
+                $valor3 = 2;
             }
             ?>
 
@@ -128,6 +139,7 @@
                                                         <option value=<?php echo $valor1; ?> selected><?php echo $estado; ?>
                                                         </option>
                                                         <option value=<?php echo $valor2; ?>><?php echo $estado2; ?></option>
+                                                        <option value=<?php echo $valor3; ?>><?php echo $estado3; ?></option>
                                                     </select>
                                                 </div>
                                                 <div class="mt-3">
@@ -136,8 +148,8 @@
 
                                                 </div>
                                                 <div class="container_botones_cards">
-                                                    <a href="#"><img src="{{ asset('/img/Basura.png') }}"
-                                                            class="img_basura"></a>
+                                                    <a href="{{ route('bicicleta.eliminar', $item->id) }}"><img
+                                                            src="{{ asset('/img/Basura.png') }}" class="img_basura"></a>
                                                 </div>
                                                 <input type="submit" class="btn btn-success" value="Guardar">
 

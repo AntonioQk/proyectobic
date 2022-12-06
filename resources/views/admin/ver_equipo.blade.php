@@ -2,7 +2,7 @@
 
 
 @section('Links')
-    <ul class="navbar-nav mx-auto">
+    <ul class="navbar-nav links_navbar_">
         <li class="nav-item">
             <a class="nav-link" href="{{ route('lista.index') }}">Inicio <span class="sr-only">(current)</span></a>
         </li>
@@ -60,7 +60,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->nombre }}</h5>
                         <p class="card-text">{{ $item->descripcion }}</p>
-                        <p class="card-text"><small class="text-muted"><?php echo $estado; ?></small></p>
+                        <p class="card-text"><small class="text-muted"><?php echo $estado; ?> {{ $item->cantidad }}
+                                Unidades</small></p>
 
                         <div class="container-modal-btn">
                             <!-- Button trigger modal -->
