@@ -46,10 +46,10 @@ class UsuarioController extends Controller
         $NewUsuario->password = $request->input('contra');
         $NewUsuario->save();
         if ($request->input('rol') == 1) {
-            return redirect()->route('usuario.create');
+            return redirect()->route('usuario.create')->with('message', 'Cuenta creada correctamente');
             //return view('agregar_user')->whit('message', 'store');
         } else if ($request->input('rol') == 2) {
-            return redirect()->route('login');
+            return redirect()->route('login')->with('message', 'Cuenta creada correctamente');
         }
     }
     public function login(Request $request)
@@ -62,7 +62,7 @@ class UsuarioController extends Controller
             return redirect()->route('lista.index');
         }
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('danger', 'Correo o Contraseña incorrecta');
     }
 
     public function logout()
@@ -115,5 +115,10 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function contacto()
+    {
+        return redirect()->route('contacto')->with('message', 'Tus datos fueron guardados correctamente!!');
     }
 }

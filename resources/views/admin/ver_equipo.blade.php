@@ -22,6 +22,9 @@
 @endsection
 
 @section('contenidoPrincipal')
+    <div class="container mt-3">
+        @include('components.flash_alerts')
+    </div>
     <div class="container">
         <a href="{{ route('equipo.create') }}"><button type="button" class="btn btn-info ml-3 mt-5 boton_redondo"><b>+</b>
                 Agregar

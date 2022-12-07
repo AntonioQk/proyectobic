@@ -89,7 +89,7 @@ class BicicletaController extends Controller
         $NewBici->tipo = $request->input('tipo');
         $NewBici->descripcion = $request->input('descrip');
         $NewBici->save();
-        return redirect()->route('lista.index');
+        return redirect()->route('lista.index')->with('message', 'Bicicleta guardada correctamente!');
     }
 
     /**
@@ -141,7 +141,7 @@ class BicicletaController extends Controller
         $bicicletas->tipo = $request->input('tipo_update');
         $bicicletas->descripcion = $request->input('descripcion_update');
         $bicicletas->save();
-        return redirect()->route('lista.index');
+        return redirect()->route('lista.index')->with('message', 'Cambios Guardados correctamente');
     }
     public function eliminar(Request $request, $id)
     {

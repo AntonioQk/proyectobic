@@ -16,7 +16,11 @@
     </ul>
 @endsection
 @section('contenidoPrincipal')
+    <div class="container mt-3">
+        @include('components.flash_alerts')
+    </div>
     <div class="container mb-5">
+
         <section class="row d-flex justify-content-center mt-2">
             <h2 class="mt-5 font-weight-bold">Contactenos</h2>
         </section>
@@ -25,7 +29,7 @@
             <!-- col-1 -->
             <section class="col-md-12 col-lg-10">
                 <!-- formuario -->
-                <form method="POST" action="{{ route('contacto') }}">
+                <form method="POST" action="{{ route('contactoCorrecto') }}">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputName">Nombre</label>

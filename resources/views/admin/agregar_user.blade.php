@@ -22,6 +22,9 @@
 @endsection
 
 @section('contenidoPrincipal')
+    <div class="container mt-3">
+        @include('components.flash_alerts')
+    </div>
     <div class="container_registro mx-auto mt-4 mb-3">
         <h3>Agregar nuevo usuario de tipo Administrador</h3>
         <form method="POST" action="{{ route('usuario.store') }}">

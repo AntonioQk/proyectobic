@@ -15,39 +15,43 @@
 
 <body class="fondo_login">
 
-    <div class="container_registro">
-        <h3 class="mt-3">CREA TU CUENTA</h3>
-        <form method="POST" action="{{ route('usuario.store') }}">
-            @csrf
-            <input type="text" name="rol" value=2 class="input_escondido">
-            <div class="form-group text-left">
-                <label for="exampleFormControlInput1" class="mt-1">Nombre completo</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tus Nombres"
-                    onkeyup="this.value=Text(this.value)" name="nombre" required>
-            </div>
-            <div class="form-group text-left">
-                <label for="exampleFormControlInput2" class="mt-1">Apellidos</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Apellidos"
-                    onkeyup="this.value=Text(this.value)" name="apellido" required>
-            </div>
-            <div class="form-group text-left">
-                <label for="exampleFormControlInput3" class="mt-1">Correo Electronico</label>
-                <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="name@example.com"
-                    onkeyup="this.value=NumTextYotros(this.value)" name="correo" required>
-            </div>
 
-            <div class="form-group text-left">
-                <label for="exampleFormControlInput4" class="mt-1">Contraseña</label>
-                <input type="password" class="form-control" id="exampleFormControlInput4" name="contra" required>
-            </div>
-            <div>
+    <div class="fondo_login2">
+        <div class="container_registro">
+            <h3 class="mt-3">CREA TU CUENTA</h3>
+            <form method="POST" action="{{ route('usuario.store') }}">
+                @csrf
+                <input type="text" name="rol" value=2 class="input_escondido">
+                <div class="form-group text-left">
+                    <label for="exampleFormControlInput1" class="mt-1">Nombre completo</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tus Nombres"
+                        onkeyup="this.value=Text(this.value)" name="nombre" required>
+                </div>
+                <div class="form-group text-left">
+                    <label for="exampleFormControlInput2" class="mt-1">Apellidos</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Apellidos"
+                        onkeyup="this.value=Text(this.value)" name="apellido" required>
+                </div>
+                <div class="form-group text-left">
+                    <label for="exampleFormControlInput3" class="mt-1">Correo Electronico</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput3"
+                        placeholder="name@example.com" onkeyup="this.value=NumTextYotros(this.value)" name="correo"
+                        required>
+                </div>
 
-                <input type="submit" class="btn mt-2 btn-login2" value="Crear cuenta">
-                <a href="{{ route('login') }}" class="btn mt-2 btn-login1">Cancelar</a>
+                <div class="form-group text-left">
+                    <label for="exampleFormControlInput4" class="mt-1">Contraseña</label>
+                    <input type="password" class="form-control" id="exampleFormControlInput4" name="contra" required>
+                </div>
+                <div>
 
-            </div>
-        </form>
+                    <input type="submit" class="btn mt-2 btn-login2" value="Crear cuenta">
+                    <a href="{{ route('login') }}" class="btn mt-2 btn-login1">Cancelar</a>
 
+                </div>
+            </form>
+
+        </div>
     </div>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

@@ -64,6 +64,8 @@ Route::get('/verEquipo_cliente', [EquipoController::class, 'index2'])->name('lis
 Route::view('/about', 'cliente/nosotros')->name('sobreNosotros');
 //CONTACTO
 Route::view('/contacto', 'cliente/contacto')->name('contacto');
+//envio correcto del form
+Route::post('/contacto2', [UsuarioController::class, 'contacto'])->name('contactoCorrecto');
 
 //RUTAS PARA LOS FILTROS ADMIN_BICIS
 //filtro disponibles

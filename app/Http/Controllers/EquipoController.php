@@ -72,7 +72,7 @@ class EquipoController extends Controller
         $NewEquipo->nombre = $request->input('nombre');
         $NewEquipo->descripcion = $request->input('descripcion');
         $NewEquipo->save();
-        return redirect()->route('lista.equipo');
+        return redirect()->route('lista.equipo')->with('message', 'Equipo guardado correctamente!');
     }
 
     /**
@@ -121,7 +121,7 @@ class EquipoController extends Controller
         $equipos->nombre = $request->input('nombre_update');
         $equipos->descripcion = $request->input('desc_update');
         $equipos->save();
-        return redirect()->route('lista.equipo');
+        return redirect()->route('lista.equipo')->with('message', 'Cambios Guardados correctamente');
     }
 
     /**
