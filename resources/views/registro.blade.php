@@ -23,17 +23,17 @@
             <div class="form-group text-left">
                 <label for="exampleFormControlInput1" class="mt-1">Nombre completo</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tus Nombres"
-                    onkeyup="this.value=NumText(this.value)" name="nombre" required>
+                    onkeyup="this.value=Text(this.value)" name="nombre" required>
             </div>
             <div class="form-group text-left">
                 <label for="exampleFormControlInput2" class="mt-1">Apellidos</label>
                 <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Apellidos"
-                    onkeyup="this.value=NumText(this.value)" name="apellido" required>
+                    onkeyup="this.value=Text(this.value)" name="apellido" required>
             </div>
             <div class="form-group text-left">
                 <label for="exampleFormControlInput3" class="mt-1">Correo Electronico</label>
                 <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="name@example.com"
-                    onkeyup="this.value=NumText(this.value)" name="correo" required>
+                    onkeyup="this.value=NumTextYotros(this.value)" name="correo" required>
             </div>
 
             <div class="form-group text-left">
@@ -59,9 +59,21 @@
     </script>
 
     <script>
-        function NumText(string) { //solo letras y numeros
+        function Text(string) { //solo letras
             var out = '';
             //Se añaden las letras validas
+            var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ '; //Caracteres validos
+
+            for (var i = 0; i < string.length; i++)
+                if (filtro.indexOf(string.charAt(i)) != -1)
+                    out += string.charAt(i);
+            return out;
+
+        }
+
+        function NumTextYotros(string) {
+            var out = '';
+
             var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890,@._ '; //Caracteres validos
 
             for (var i = 0; i < string.length; i++)

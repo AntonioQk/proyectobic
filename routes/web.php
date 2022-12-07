@@ -59,6 +59,12 @@ Route::get('/HomeCliente', [BicicletaController::class, 'index2'])->name('listaC
 Route::get('/verEquipo_cliente', [EquipoController::class, 'index2'])->name('listaCliente.equipo')->middleware('auth');
 //---------------------------------------------------------
 
+//RUTA DE CONTACTO Y SOBRE NOSOTROS CLIENTE
+//SOBRE NOSOTROS
+Route::view('/about', 'cliente/nosotros')->name('sobreNosotros');
+//CONTACTO
+Route::view('/contacto', 'cliente/contacto')->name('contacto');
+
 //RUTAS PARA LOS FILTROS ADMIN_BICIS
 //filtro disponibles
 Route::get('/HomeAdmin/disponibles', [BicicletaController::class, 'index_dispo'])->name('lista.index_dispo')->middleware('auth');

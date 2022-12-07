@@ -53,7 +53,7 @@
         <div class="mb-3">
             <label for="validationTextarea">Descripción</label>
             <textarea class="form-control" id="validationTextarea" placeholder="Descripcion de la bicicleta" name="descrip" required
-                minlength="5" onkeyup="this.value=NumText(this.value)"></textarea>
+                minlength="5" onkeyup="this.value=NumText2(this.value)"></textarea>
         </div>
         <div class="input-group mb-3">
             {{-- <div class="custom-file ">
@@ -73,6 +73,17 @@
 
     <script>
         function NumText(string) { //solo letras y numeros
+            var out = '';
+            //Se añaden las letras validas
+            var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890 '; //Caracteres validos
+
+            for (var i = 0; i < string.length; i++)
+                if (filtro.indexOf(string.charAt(i)) != -1)
+                    out += string.charAt(i);
+            return out;
+        }
+        //numero texto y coma
+        function NumText2(string) { //solo letras y numeros
             var out = '';
             //Se añaden las letras validas
             var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890, '; //Caracteres validos

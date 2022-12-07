@@ -10,10 +10,10 @@
             <a class="nav-link" href="{{ route('listaCliente.equipo') }}">ver equipo</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">contacto</a>
+            <a class="nav-link" href="{{ route('contacto') }}">contacto</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">sobre nosotros</a>
+            <a class="nav-link" href="{{ route('sobreNosotros') }}">sobre nosotros</a>
         </li>
     </ul>
 @endsection
