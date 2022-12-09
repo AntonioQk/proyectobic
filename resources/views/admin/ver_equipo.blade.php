@@ -102,12 +102,18 @@
                                                             required name="nombre_update" value="{{ $item->nombre }}"
                                                             maxlength="35" minlength="5"
                                                             onkeyup="this.value=NumText(this.value)">
+                                                        @error('nombre_update')
+                                                            <p class="msj">*{{ $message }}</p>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="validationTextarea">Descripción</label>
                                                     <textarea class="form-control" id="validationTextarea2" placeholder="Descripcion del equipo" name="desc_update" required
                                                         minlength="5" onkeyup="this.value=NumText(this.value)">{{ $item->descripcion }}</textarea>
+                                                    @error('desc_update')
+                                                        <p class="msj">*{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                                 <div>
                                                     <label for="estado">Estado del equipo</label>
@@ -120,10 +126,12 @@
                                                 </div>
                                                 <label for="cantidad" class="mt-2">Cantidad</label>
                                                 <input class="form-control col-2" type="number" id="cantidad"
-                                                    name="cantidad_equipo_update" value="{{ $item->cantidad }}">
+                                                    name="cantidad_equipo_update" value="{{ $item->cantidad }}"
+                                                    min="1">
                                                 <div class="mt-3">
                                                     <label for="seleccionArchivos2">Seleccionar nueva imagen</label>
-                                                    <input type="file" name="img_equipo_update" class="input_img mb-3">
+                                                    <input type="file" name="img_equipo_update"
+                                                        class="input_img mb-3">
 
                                                 </div>
                                                 <input type="submit" class="btn btn-success" value="Guardar">

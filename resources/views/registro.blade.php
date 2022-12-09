@@ -15,7 +15,7 @@
 
 <body class="fondo_login">
 
-
+    {{-- @include('components.flash_alerts') --}}
     <div class="fondo_login2">
         <div class="container_registro">
             <h3 class="mt-3">CREA TU CUENTA</h3>
@@ -26,27 +26,47 @@
                     <label for="exampleFormControlInput1" class="mt-1">Nombre completo</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tus Nombres"
                         onkeyup="this.value=Text(this.value)" name="nombre" required>
+                    @error('nombre')
+                        <p class="msj">*{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="form-group text-left">
-                    <label for="exampleFormControlInput2" class="mt-1">Apellidos</label>
+                    <label for="exampleFormControlInput2">Apellidos</label>
                     <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Apellidos"
                         onkeyup="this.value=Text(this.value)" name="apellido" required>
+                    @error('apellido')
+                        <p class="msj">*{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="form-group text-left">
-                    <label for="exampleFormControlInput3" class="mt-1">Correo Electronico</label>
+                    <label for="exampleFormControlInput3">Correo Electronico</label>
                     <input type="email" class="form-control" id="exampleFormControlInput3"
                         placeholder="name@example.com" onkeyup="this.value=NumTextYotros(this.value)" name="correo"
                         required>
+                    @error('correo')
+                        <p class="msj">*{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="form-group text-left">
-                    <label for="exampleFormControlInput4" class="mt-1">Contraseña</label>
+                    <label for="exampleFormControlInput4">Contraseña</label>
                     <input type="password" class="form-control" id="exampleFormControlInput4" name="contra" required>
+                    @error('contra')
+                        <p class="msj">*{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-group text-left">
+                    <label for="exampleFormControlInput4">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="exampleFormControlInput4" name="contraConfirm"
+                        required>
+                    @error('contraConfirm')
+                        <p class="msj">*{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
 
-                    <input type="submit" class="btn mt-2 btn-login2" value="Crear cuenta">
-                    <a href="{{ route('login') }}" class="btn mt-2 btn-login1">Cancelar</a>
+                    <input type="submit" class="btn mt-1 btn-login2" value="Crear cuenta">
+                    <a href="{{ route('login') }}" class="btn mt-1 btn-login1">Cancelar</a>
 
                 </div>
             </form>

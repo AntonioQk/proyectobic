@@ -115,6 +115,9 @@
                                                             name="marca_update" placeholder="Marca"
                                                             value="{{ $item->marca }}"
                                                             onkeyup="this.value=NumText(this.value)">
+                                                        @error('marca_update')
+                                                            <p class="msj">*{{ $message }}</p>
+                                                        @enderror
                                                     </div>
                                                     <div class="col">
                                                         <label for="tipo">Tipo de bicicleta</label>
@@ -134,11 +137,14 @@
                                                     <label for="descripcion">Descripción</label>
                                                     <textarea class="form-control" id="descripcion" placeholder="Descripcion de la bicicleta" name="descripcion_update"
                                                         required onkeyup="this.value=NumText(this.value)">{{ $item->descripcion }}</textarea>
+                                                    @error('descripcion_update')
+                                                        <p class="msj">*{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                                 <div>
                                                     <label for="estado">Estado de la bicicleta</label>
-                                                    <select name="estado_update" id="estado" class="form-control col-6"
-                                                        required>
+                                                    <select name="estado_update" id="estado"
+                                                        class="form-control col-6" required>
                                                         <option value=<?php echo $valor1; ?> selected><?php echo $estado; ?>
                                                         </option>
                                                         <option value=<?php echo $valor2; ?>><?php echo $estado2; ?></option>

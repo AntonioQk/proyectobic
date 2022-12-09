@@ -16,7 +16,7 @@
             <a class="nav-link" href="{{ route('equipo.create') }}">Agregar equipo</a>
         </li> --}}
         <li class="nav-item">
-            <a class="nav-link">Agregar administrador</a>
+            <a class="nav-link" href="{{ route('usuario.create') }}">Agregar administrador</a>
         </li>
     </ul>
 @endsection
@@ -32,14 +32,23 @@
                 <label for="customControlValidation1_1">Nombre del equipo</label>
                 <input type="text" class="form-control" id="customControlValidation1_1" placeholder="Nombre del equipo"
                     required name="nombre" onkeyup="this.value=NumText(this.value)">
+                @error('nombre')
+                    <p class="msj">*{{ $message }}</p>
+                @enderror
             </div>
         </div>
         <label for="cantidad" class="mt-2">Cantidad</label>
-        <input class="form-control col-2" type="number" id="cantidad" name="cantidad_equipo">
+        <input class="form-control col-2" type="number" id="cantidad" name="cantidad_equipo" min="1">
+        @error('cantidad_equipo')
+            <p class="msj">*{{ $message }}</p>
+        @enderror
         <div class="mb-3 mt-2">
             <label for="validationTextarea2">Descripción</label>
             <textarea class="form-control" id="validationTextarea2" placeholder="Descripcion del equipo" name="descripcion" required
                 onkeyup="this.value=NumText(this.value)"></textarea>
+            @error('descripcion')
+                <p class="msj">*{{ $message }}</p>
+            @enderror
         </div>
         <div class="input-group mb-3">
             <input type="file" name="img_equipo" id="seleccionArchivos" accept="image/*" class="input_img" required>

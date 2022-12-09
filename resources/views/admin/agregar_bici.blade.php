@@ -16,7 +16,7 @@
             <a class="nav-link" href="{{ route('equipo.create') }}">Agregar equipo</a>
         </li> --}}
         <li class="nav-item">
-            <a class="nav-link">Agregar administrador</a>
+            <a class="nav-link" href="{{ route('usuario.create') }}">Agregar administrador</a>
         </li>
     </ul>
 @endsection
@@ -35,12 +35,15 @@
         <div class="form-row">
             <div class="col">
                 <label for="customControlValidation1">Marca</label>
-                <input type="text" class="form-control" id="customControlValidation1" name="marca" placeholder="Marca"
+                <input type="text" class="form-control" id="customControlValidatio1" name="marca" placeholder="Marca"
                     maxlength="20" minlength="3" required onkeyup="this.value=NumText(this.value)">
+                @error('marca')
+                    <p class="msj">*{{ $message }}</p>
+                @enderror
             </div>
             <div class="col">
-                <label for="customControlValidation1">Tipo de bicicleta</label>
-                <select name="tipo" id="customControlValidatio21" class="form-control" required>
+                <label>Tipo de bicicleta</label>
+                <select name="tipo" id="customControlValidatio1" class="form-control" required>
                     <option disabled selected>Selecciona una bicicleta</option>
                     <option value="Montaña">Bicicleta de Montaña</option>
                     <option value="Infantil">Bicicleta Infantil</option>
@@ -48,12 +51,18 @@
                     <option value="Ruta">Bicicleta de Ruta</option>
                     <option value="Doble">Bicicleta Doble</option>
                 </select>
+                @error('tipo')
+                    <p class="msj">*{{ $message }}</p>
+                @enderror
             </div>
         </div>
         <div class="mb-3">
             <label for="validationTextarea">Descripción</label>
-            <textarea class="form-control" id="validationTextarea" placeholder="Descripcion de la bicicleta" name="descrip" required
-                minlength="5" onkeyup="this.value=NumText2(this.value)"></textarea>
+            <textarea class="form-control" id="customControlValidatio1" placeholder="Descripcion de la bicicleta" name="descrip"
+                required minlength="5" onkeyup="this.value=NumText2(this.value)"></textarea>
+            @error('descrip')
+                <p class="msj">*{{ $message }}</p>
+            @enderror
         </div>
         <div class="input-group mb-3">
             {{-- <div class="custom-file ">

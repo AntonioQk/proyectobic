@@ -6,30 +6,31 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateBicicletasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('bicicletas', function (Blueprint $table) {
-            $table->id();
-            $table->integer('estado_bici');
-            $table->String('marca');
-            $table->String('tipo');
-            $table->String('descripcion');
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('bicicletas', function (Blueprint $table) {
+      $table->id();
+      $table->integer('estado_bici');
+      $table->String('marca');
+      $table->String('tipo');
+      $table->String('descripcion');
+      $table->String('img_bici');
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('bicicletas');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('bicicletas');
+  }
 }
